@@ -293,9 +293,11 @@ namespace {
     // Entities are light weight are easily created with a single function call.
     World::Entity ent = world.entity_new();
 
-    // Components have no data associated with them until assigned. Component 
-    // types require no definition before hand, containing arrays are created as 
-    // needed. Components can be any type.
+    // Entities have no data associated with them until assigned components.
+    // Component types require no definition before hand, containing arrays are
+    // created as needed. Components can be any type. Memory is allocated only
+    // for components in use, so if only 10 of 100 entities have a given
+    // component, then only enough space for 10 components is allocated.
     world.comp_add<int32_t>(ent, 1000);
     world.comp_add<float>(ent, -0.5f);
 
